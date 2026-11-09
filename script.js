@@ -1,21 +1,40 @@
 
-const menuToggle = document.getElementById("menuToggle");
-const navLinks = document.getElementById("navLinks");
+// Automatically update the year
 const year = document.getElementById("year");
 
-// Update the copyright year
 year.textContent = new Date().getFullYear();
 
-// Open and close the mobile navigation
-menuToggle.addEventListener("click", () => {
-  const isOpen = navLinks.classList.toggle("open");
-  menuToggle.setAttribute("aria-expanded", String(isOpen));
+
+// Mobile Navigation
+const menuToggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
+
+menuToggle.addEventListener("click", function () {
+
+    const isOpen = navLinks.classList.toggle("open");
+
+    menuToggle.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+    );
+
 });
 
-// Close the mobile menu after selecting a section
-navLinks.querySelectorAll("a").forEach((link) => {
-  link.addEventListener("click", () => {
-    navLinks.classList.remove("open");
-    menuToggle.setAttribute("aria-expanded", "false");
-  });
+
+// Close menu after clicking a link
+const navItems = navLinks.querySelectorAll("a");
+
+navItems.forEach(function (item) {
+
+    item.addEventListener("click", function () {
+
+        navLinks.classList.remove("open");
+
+        menuToggle.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+    });
+
 });
